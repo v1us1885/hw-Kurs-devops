@@ -1,0 +1,29 @@
+---
+# tasks file for kibana
+
+# Copy Kibana.deb
+
+  - name: Copy Kibana.deb file to server
+    ansible.builtin.copy:
+      src: "{{ kibana_deb_path }}"
+      dest: "/tmp/kibana.deb"
+
+  - name: Install Kibana from .deb file
+    ansible.builtin.shell:
+      cmd: dpkg -i /tmp/kibana.deb
+
+# Replace default kibana.yml
+
+  - name: Replace default kibana.yml
+    template:
+      src: kibana.yml
+      dest: /etc/kibana/kibana.yml
+
+# Start kibana
+
+  - name: Enable and start kibana service
+    service:
+      name: kibana
+      enabled: yes
+      state: started
+      daemon_reload: yes
