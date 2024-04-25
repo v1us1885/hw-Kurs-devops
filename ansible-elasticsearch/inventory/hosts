@@ -1,0 +1,28 @@
+[elasticsearch]
+elasticsearch ansible_host=10.0.1.14
+
+[kibana]
+
+kibana ansible_host=10.0.3.21
+
+[webservers]
+webserver1 ansible_host=10.0.1.30
+webserver2 ansible_host=10.0.2.33
+
+[zabbix_servers]
+zabbix_servers ansible_host=10.0.3.23
+
+[bastion_host]
+bastion_host ansible_host=10.0.3.35
+
+[ALL]
+elasticsearch ansible_host=10.0.1.14
+kibana ansible_host=10.0.3.21
+webserver1 ansible_host=10.0.1.30
+webserver2 ansible_host=10.0.2.33
+bastion_host ansible_host=10.0.3.35
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_user=devops
+ansible_ssh_common_args='-o ProxyJump=devops@51.250.12.130'
