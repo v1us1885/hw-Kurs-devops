@@ -1,0 +1,29 @@
+---
+# tasks file for elasticsearch
+
+# Copy Install Elasticsearch from .deb file
+
+  - name: Copy Elasticsearch .deb file to server
+    ansible.builtin.copy:
+      src: "{{ es_deb_path }}"
+      dest: "/tmp/elasticsearch.deb"
+
+  - name: Install Elasticsearch from .deb file
+    ansible.builtin.shell:
+      cmd: dpkg -i /tmp/elasticsearch.deb
+
+# Replace default elasticsearch.yml
+
+  - name: Replace default elasticsearch.yml
+    template:
+      src: elasticsearch.yml
+      dest: /etc/elasticsearch/elasticsearch.yml
+
+# Start Elasticsearch
+
+  - name: Enable and start Elasticsearch service
+    service:
+      name: elasticsearch
+      enabled: yes
+      state: started
+      daemon_reload: yes
