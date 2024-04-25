@@ -1,0 +1,6 @@
+---
+# defaults file for zabbix-agent
+zabbix_server: 10.0.3.23
+zabbix_url: http://178.154.224.151/zabbix
+zabbix_user: Admin
+zabbix_password: zabbix
