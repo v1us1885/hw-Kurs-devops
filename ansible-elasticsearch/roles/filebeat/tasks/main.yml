@@ -1,0 +1,41 @@
+---
+# tasks file for filebeat
+- name: Copy filebeat .deb file to server
+  ansible.builtin.copy:
+    src: "{{ filebeat_deb_path }}"
+    dest: "/tmp/filebeat.deb"
+
+- name: Install filebeat from .deb file
+  ansible.builtin.shell:
+    cmd: dpkg -i /tmp/filebeat.deb
+
+- name: Configure Filebeat to collect Nginx logs
+  ansible.builtin.template:
+    src: filebeat.yml.j2
+    dest: /etc/filebeat/filebeat.yml
+  notify: restart filebeat
+
+- name: Configure Filebeat module to collect Nginx logs
+  ansible.builtin.template:
+    src: nginx.yml.j2
+    dest: /etc/filebeat/modules.d/nginx.yml
+  notify: restart filebeat
+
+- name: Enable Filebeat Nginx module
+  ansible.builtin.shell:
+    cmd: "source /etc/profile; /usr/share/filebeat/bin/filebeat modules enable nginx -c /etc/filebeat/filebeat.yml"
+  args:
+    executable: /bin/bash
+  notify: restart filebeat
+
+- name: Run Filebeat setup
+  ansible.builtin.shell:
+    cmd: "./filebeat setup -e -c /etc/filebeat/filebeat.yml"
+  args:
+    chdir: /usr/share/filebeat/bin/
+
+- name: Ensure Filebeat is running and enabled
+  ansible.builtin.systemd:
+    name: filebeat
+    state: started
+    enabled: yes
