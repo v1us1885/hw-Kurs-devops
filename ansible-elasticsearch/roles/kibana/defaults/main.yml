@@ -1,0 +1,8 @@
+---
+# defaults file for kibana
+
+kibana_deb_path: /home/devops/ansible-elasticsearch/kibana-8.13.2-amd64.deb
+server_port: 5601
+server_host: 0.0.0.0
+server_name: server-kibana
+elasticsearch_hosts: http://10.0.1.14:9200
