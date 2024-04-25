@@ -1,0 +1,19 @@
+---
+# tasks file for webserver
+
+- name: install NGINX
+  apt:
+    name: nginx
+    state: latest
+    update_cache: yes
+
+- name: deploy index.html
+  copy:
+    src: index.html
+    dest: /var/www/html/index.html
+
+- name: starting nginx
+  service:
+    name: nginx
+    state: started
+    enabled: yes
