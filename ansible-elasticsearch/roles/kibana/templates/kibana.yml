@@ -1,0 +1,4 @@
+server.port: {{ server_port }}
+server.host: "{{ server_host }}"
+server.name: "{{ server_name }}"
+elasticsearch.hosts: ["{{ elasticsearch_hosts }}"]
