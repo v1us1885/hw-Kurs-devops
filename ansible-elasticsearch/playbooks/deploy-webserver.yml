@@ -1,0 +1,6 @@
+---
+# Deploy web
+- hosts: webservers
+  become: yes
+  roles:
+  - ../roles/webserver
