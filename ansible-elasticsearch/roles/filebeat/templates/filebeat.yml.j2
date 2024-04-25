@@ -1,0 +1,13 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /var/log/nginx/access.log
+    - /var/log/nginx/error.log
+filebeat.config.modules:
+  path: /etc/filebeat/modules.d/*.yml
+  reload.enabled: false
+output.elasticsearch:
+  hosts: ["{{ elasticsearch_host }}:9200"]
+setup.kibana:
+  host: "{{ kibana_host }}:5601"
