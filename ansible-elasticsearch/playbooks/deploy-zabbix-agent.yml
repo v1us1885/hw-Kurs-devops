@@ -1,0 +1,5 @@
+- hosts: ALL
+  gather_facts: yes
+  become: yes
+  roles:
+    - ../roles/zabbix-agent
