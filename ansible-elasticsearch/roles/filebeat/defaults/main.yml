@@ -1,0 +1,5 @@
+---
+# defaults file for filebeat
+elasticsearch_host: 10.0.1.14
+kibana_host: 178.154.222.166
+filebeat_deb_path: /home/devops/ansible-elasticsearch/filebeat-8.13.2-amd64.deb
