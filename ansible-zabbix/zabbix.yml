@@ -1,0 +1,31 @@
+- name: Deploy Zabbix Server with Apache and MySQL
+  hosts: zabbix_servers
+  become: yes
+  vars:
+    mysql_databases:
+      - name: zabbix
+    mysql_users:
+      - name: zabbix
+        password: zabbix  # This is the Zabbix database user's password.
+        priv: "zabbix.*:ALL"
+    zabbix_version: 6.4
+    zabbix_web_server: nginx
+    zabbix_database_create_locally: true
+    zabbix_server_database: mysql
+    zabbix_server_mysql_login_user: root
+    zabbix_server_mysql_login_password:
+    zabbix_server_database_long: mysql
+    zabbix_server_dbhost: localhost
+    zabbix_server_dbname: zabbix
+    zabbix_server_dbuser: zabbix
+    zabbix_server_dbpassword: zabbix  # MySQL database password for the Zabbix user.
+    zabbix_url: 178.154.224.151
+    zabbix_frontend_options:
+      ZBX_SERVER_HOST: 178.154.224.151
+      PHP_TZ: Europe/Moscow
+
+  roles:
+    - role: geerlingguy.mysql
+    - role: geerlingguy.apache
+    - role: community.zabbix.zabbix_server
+    - role: community.zabbix.zabbix_web
