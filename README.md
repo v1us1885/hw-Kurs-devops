@@ -97,9 +97,9 @@ Cоздайте ВМ, разверните на ней Elasticsearch. Устан
 
 
  ### Решение
- http://158.160.34.132/zabbix
- http://158.160.111.165:5601/app/discover#/
- http://158.160.136.102
+ http://158.160.34.132/zabbix   
+ http://158.160.111.165:5601/app/discover#/   
+ http://158.160.136.102   
 Все файлы находятся в папках
 установочные файлы не умещаются
 [text](ansible-elasticsearch/kibana-8.13.2-amd64.deb) [text](ansible-elasticsearch/elasticsearch-8.13.2-amd64.deb) [text](ansible-elasticsearch/filebeat-8.13.2-amd64.deb)
