@@ -1,0 +1,14 @@
+---
+# defaults file for elasticsearch
+es_deb_path: /home/devops/ansible-elasticsearch/elasticsearch-8.13.2-amd64.deb
+
+cluster_name: kurs-elk
+node_name: elk-l
+
+path_data: /var/lib/elasticsearch
+path_logs: /var/log/elasticsearch
+
+network_host: 0.0.0.0
+network_port: 9200
+
+discovery_type: single-node
