@@ -1,0 +1,12 @@
+---
+# Deploy ELK
+- hosts: elasticsearch
+  become: yes
+  roles:
+  - ../roles/java
+  - ../roles/elasticsearch
+
+- hosts: kibana
+  become: yes
+  roles:
+  - ../roles/kibana
