@@ -1,0 +1,8 @@
+[zabbix_servers]
+zabbix_servers ansible_host=10.0.3.23
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
+[zabbix_servers:vars]
+ansible_user=devops
+ansible_ssh_common_args='-o ProxyJump=devops@51.250.12.130'
